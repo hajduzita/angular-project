@@ -1,0 +1,22 @@
+$nm-purple: #5555A1;
+$extralight-grey: #B0B3B8;
+
+button {
+  color: white;
+  font: {
+    size: 16px;
+    // weight: bolder;
+  }
+  padding: 10px 25px;
+  cursor: pointer;
+  background-color: $nm-purple;
+}
+
+button:hover {
+  background-color: darken($nm-purple, 20%);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: $extralight-grey;
+}

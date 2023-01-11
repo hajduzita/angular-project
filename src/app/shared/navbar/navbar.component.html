@@ -1,0 +1,65 @@
+<!-- Horizontal -->
+<!--<nav>
+  <div class="welcome-user">
+    <img [routerLink]="['/welcome']"
+         class="logo"
+         src="assets/images/nm-logo.png"
+         alt="Neumann medical logo">
+    <p>Welcome, <span>{{ userEmail }}</span></p>
+  </div>
+  <ul>
+    <li *ngIf="isWorklistPermission">
+      <a [routerLink]="['/worklist']">
+        <fa-icon [icon]="['fas', 'file-alt']"></fa-icon></a>
+    </li>
+    <li *ngIf="isUserListPermission">
+      <a [routerLink]="['/user-list']">
+        <fa-icon [icon]="['fas', 'users']"></fa-icon></a>
+    </li>
+    <li>
+      <a class="sign-out"
+        (click)="onLogout()">
+        <fa-icon [icon]="['fas', 'power-off']"></fa-icon></a>
+    </li>
+  </ul>
+</nav>-->
+
+<!-- Vertical -->
+<nav>
+  <ul>
+    <span>MySite</span>
+    <li class="separator-line"></li>
+    <li *ngIf="isWorklistPermission">
+      <a [routerLink]="['/worklist']" [routerLinkActive]="['is-active']">
+        <fa-icon [icon]="['fas', 'file-alt']"></fa-icon>Worklist
+      </a>
+    </li>
+    <li *ngIf="isUserListPermission">
+      <a [routerLink]="['/user-list']" [routerLinkActive]="['is-active']">
+        <fa-icon [icon]="['fas', 'users']"></fa-icon>Users
+      </a>
+    </li>
+    <li *ngIf="isStatisticsPermission">
+      <a [routerLink]="['/statistics']" [routerLinkActive]="['is-active']">
+        <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>Statistics
+      </a>
+    </li>
+    <li *ngIf="isAnnotationPermission">
+      <a [routerLink]="['/annotation']" [routerLinkActive]="['is-active']">
+        <fa-icon [icon]="['fas', 'x-ray']"></fa-icon>Annotation
+      </a>
+    </li>
+    <div class="me-section">
+    <span>{{ userName | uppercase }}</span>
+    <li class="separator-line">
+      <a [routerLink]="['/my-profile']" [routerLinkActive]="['is-active']">
+        <fa-icon [icon]="['fas', 'user-circle']"></fa-icon>My profile
+      </a>
+    </li>
+    <li>
+      <a (click)="onLogout()" class="logout"><fa-icon [icon]="['fas', 'power-off']" [routerLinkActive]="['is-active']"></fa-icon>Logout
+      </a>
+    </li>
+    </div>
+  </ul>
+</nav>

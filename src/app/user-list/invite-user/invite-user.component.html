@@ -1,0 +1,38 @@
+<main>
+  <mgd-navbar></mgd-navbar>
+  <section class="wrap">
+    <div class="title-row">
+      <fa-icon class="header-icon" [icon]="['fas', 'user']"></fa-icon>
+      <p>Invite new user</p>
+    </div>
+    <section>
+      <div class="container">
+        <p>New user</p>
+        <form [formGroup]="inviteUserForm" (submit)="onSendRegistration()">
+          <div class="field">
+            <label class="field-label" [class.error]="email.touched && email.errors">Email *</label>
+            <input type="email" formControlName="email">
+            <span *ngIf="email.touched && email.hasError('email')"
+                  class="email-error-message">Invalid email pattern</span>
+          </div>
+          <div class="field">
+            <label class="field-label">Authority *</label>
+            <div class="button-type-simple-choice">
+              <label *ngFor="let role of roles">
+                <input type="radio" formControlName="roleId" [value]="role.id">
+                <span>{{ role.authority }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="send-button">
+            <button
+              *ngIf="!loading"
+              type="submit"
+              [disabled]="inviteUserForm.invalid || loading">Send registration</button>
+            <mgd-spinner *ngIf="loading"></mgd-spinner>
+          </div>
+        </form>
+      </div>
+    </section>
+  </section>
+</main>

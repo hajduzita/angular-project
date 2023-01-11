@@ -1,0 +1,87 @@
+<main>
+  <mgd-navbar></mgd-navbar>
+  <section class="wrap">
+    <div class="title-row">
+      <fa-icon class="header-icon" [icon]="['fas', 'users']"></fa-icon>
+      <p>User list</p>
+    </div>
+    <section>
+      <div class="new-user">
+        <button [routerLink]="['/new-user']">
+          <fa-icon class="user-circle-icon" [icon]="['fas', 'user']"></fa-icon>
+          Invite new user
+        </button>
+      </div>
+      <div>
+        <table>
+          <thead>
+          <tr>
+            <th style="width: 20%">NAME</th>
+            <th style="width: 17%">LAST LOGIN</th>
+            <!--<th style="width: 17%">ROLE</th>-->
+            <th style="width: 17%">STATUS</th>
+            <th style="width: 17%">REGISTRATION</th>
+            <th style="width: 17%">ACTIVE</th>
+            <th style="width: 10%"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <!-- NAME -->
+            <td *ngIf="user.UserState === 'REGISTERED'">
+              <span class="user-name">{{ user.fullName }}</span>
+            </td>
+            <td *ngIf="user.UserState === 'INVITED'">
+              <span class="user-name">{{ user.email }}</span>
+            </td>
+            <!-- LAST LOGIN -->
+            <td *ngIf="user.lastSignIn"
+              class="last-login">{{ user.lastSignIn | date: 'yyyy-MM-dd HH:mm' }}</td>
+            <td *ngIf="!user.lastSignIn"
+                class="last-login">n/a</td>
+            <!-- STATUS -->
+            <td *ngIf="user.UserState === 'REGISTERED'"><span class="user-state-registered">REGISTERED</span></td>
+            <td *ngIf="user.UserState === 'INVITED'"><span class="user-state-invited">INVITED</span></td>
+            <!-- REGISTRATION -->
+            <td *ngIf="user.UserState === 'REGISTERED'"
+                class="last-login">
+              {{ user.registrationDate | date: 'yyyy-MM-dd'}}
+            </td>
+            <td *ngIf="user.UserState === 'INVITED'">
+              <span class="last-login">n/a</span>
+            </td>
+            <!-- ACTIVE -->
+            <td>
+              <div class="toggle">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="user.active"
+                    (click)="onChangeUserActivity(user.email, user.active)"
+                    [disabled]="user.UserState === 'INVITED'">
+                 <span class="slider round"></span>
+                </label>
+              </div>
+            </td>
+            <td class="user-edit">
+              <button
+                class="users-edit"
+                (click)="onOpenUserProfile(user.uuid)"
+                title="Edit user">
+                <fa-icon [icon]="['fas', 'user-edit']"></fa-icon>
+              </button>
+              <button
+                class="users-delete"
+                (click)="onDeleteUser(user.uuid, user.fullName)"
+                title="Delete user">
+                <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</main>
+

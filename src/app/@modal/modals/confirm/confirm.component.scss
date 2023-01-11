@@ -1,0 +1,129 @@
+:host {
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.25);
+  min-width: 250px;
+  max-width: 400px;
+  padding: 15px 35px 20px 35px;
+  background: #242423;
+
+  header {
+
+    display: inline-flex;
+    border-bottom: 1px solid #333533;
+    width: 100%;
+    color: lighten(crimson, 5%);
+
+    fa-icon {
+      font-size: 15px;
+    }
+
+    h5 {
+      padding-bottom: 3px;
+      padding-left: 10px;
+    }
+
+  }
+
+  p {
+    margin: 15px 0 15px 0;
+    font: {
+      size: 14px;
+    }
+    line-height: 20px;
+  }
+
+
+  label {
+    margin: 0 0 20px 0;
+    padding: 4px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    input[type=checkbox] {
+      display: none;
+    }
+
+    input[type=checkbox] + div {
+      border-radius: 4px;
+
+      &:before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font: {
+          size: 15px;
+        }
+        color: #fff;
+        border-radius: 4px;
+      }
+    }
+
+    input[type=checkbox]:checked + div:before {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    & > div {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      border: 2px solid rgb(100, 100, 100);
+
+      &:before {
+        width: 20px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background: rgb(100, 100, 100);
+        transform: scale(.001);
+        opacity: 0;
+        transition: all ease-in-out 200ms;
+      }
+    }
+
+    & > span {
+      display: inline-block;
+      margin: 0 15px 0 7px;
+      font: {
+        size: 14px;
+        weight: 600;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin: 0 0 0 15px;
+      font: {
+        family: 'Roboto', sans-serif;
+        size: 14px;
+        weight: 600;
+      }
+      text-transform: uppercase;
+      color: #999;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      &.alert {
+        color: crimson;
+        padding: 5px;
+      }
+
+      &.alert:hover {
+        background-color: crimson;
+        color: whitesmoke;
+      }
+    }
+  }
+}

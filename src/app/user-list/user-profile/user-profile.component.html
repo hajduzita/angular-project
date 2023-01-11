@@ -1,0 +1,57 @@
+<main>
+  <mgd-navbar></mgd-navbar>
+  <section class="wrap">
+    <div class="title-row">
+      <fa-icon class="header-icon" [icon]="['fas', 'user-edit']"></fa-icon>
+      <p>Edit user</p>
+    </div>
+    <div class="cards">
+      <section>
+        <div class="container">
+          <p>Edit user data</p>
+          <form [formGroup]="editUserDataForm" (submit)="onChangeUserData()">
+            <div class="field">
+              <label class="field-label">Email</label>
+              <input
+                class="email"
+                type="text"
+                formControlName="email">
+              <span
+                *ngIf="email.touched && email.hasError('email')"
+                class="error-message">Invalid e-mail</span>
+            </div>
+            <div class="field">
+              <label class="field-label">Name</label>
+              <input
+                type="text"
+                formControlName="fullName">
+              <span
+                *ngIf="fullName.touched && fullName.hasError('required')"
+                class="error-message">Name is required</span>
+            </div>
+            <div class="field">
+              <label class="field-label">Authority</label>
+              <div class="button-type-simple-choice">
+                <label *ngFor="let role of roles">
+                  <input type="radio" formControlName="currentRoleId" [value]="role.id">
+                  <span>{{ role.authority }}</span>
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Password</label>
+              <input
+                type="text"
+                formControlName="password">
+            </div>
+            <div class="send-button">
+              <button
+                type="submit"
+                [disabled]="editUserDataForm.invalid || loading">Update data</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,19 @@
+ul {
+  width: 100%;
+  max-width: 350px;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  list-style: none;
+  z-index: 9999;
+
+  li {
+    width: 100%;
+    display: flex;
+
+    &:not(:last-of-type) {
+      margin: 0 0 10px 0;
+    }
+  }
+}

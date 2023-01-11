@@ -1,0 +1,10 @@
+<div
+  *ngIf="modal"
+  id="overlay"
+  [class]="config.schema"
+  [style.background]="config.backdrop">
+  <div class="container">
+    <mgd-modals [modal]="modal"></mgd-modals>
+  </div>
+</div>
+

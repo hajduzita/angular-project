@@ -1,0 +1,17 @@
+<header>
+  <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon><h5>DELETE USER</h5>
+</header>
+<p [innerHTML]="message"></p>
+<!-- SOFT CONFIRM -->
+<!--<label *ngIf="!config.softConfirm">
+  <input type="checkbox" [(ngModel)]="confirmed">
+  <div class="icon-check"></div>
+  <span>Yes, I want to delete the user!</span>
+</label>-->
+<div class="buttons">
+  <!--<button *ngIf="config.softConfirm || confirmed" class="alert" type="button" (click)="onAccept()">{{ config.buttonLabels[0] }}</button>-->
+  <button class="alert" type="button" (click)="onAccept()">Delete</button>
+  <!--<button type="button" (click)="onDecline()">{{ config.buttonLabels[1] }}</button>-->
+  <button class="cancel" type="button" (click)="onDecline()">Cancel</button>
+</div>
+

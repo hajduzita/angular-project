@@ -1,0 +1,94 @@
+<main>
+  <mgd-navbar></mgd-navbar>
+  <section class="wrap">
+    <div class="title-row">
+      <fa-icon class="header-icon" [icon]="['fas', 'user-circle']"></fa-icon>
+      <p>My profile</p>
+    </div>
+    <div class="cards">
+      <section>
+        <div class="container">
+          <p>Edit my data</p>
+          <form [formGroup]="onChangeDataForm" (submit)="onChangeData()">
+            <div class="field">
+              <label class="field-label">Email</label>
+              <input
+                class="email"
+                type="text"
+                formControlName="email">
+              <span
+                *ngIf="email.touched && email.hasError('email')"
+                class="error-message">Invalid e-mail</span>
+            </div>
+            <div class="field">
+              <label class="field-label">Name</label>
+              <input
+                type="text"
+                formControlName="fullName">
+              <span
+                *ngIf="fullName.touched && fullName.hasError('required')"
+                class="error-message">Name is required</span>
+            </div>
+            <div *ngIf="isAdminOrSupervisorosSuperadmin" class="field">
+              <label class="field-label">Authority</label>
+              <div class="button-type-simple-choice">
+                <label *ngFor="let role of roles">
+                  <input type="radio" formControlName="roleId" [value]="role.id">
+                  <span>{{ role.authority }}</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="!isAdminOrSupervisorosSuperadmin" class="field">
+              <label class="field-label">Authority: <span style="font-weight: 500">{{ this.userData.role.authority }}</span> </label>
+            </div>
+            <div class="send-button">
+              <button
+                *ngIf="!loading"
+                type="submit"
+                [disabled]="onChangeDataForm.invalid || loading">Update data</button>
+              <mgd-spinner *ngIf="loading"></mgd-spinner>
+            </div>
+          </form>
+
+          <p class="password-title">Change password</p>
+          <form [formGroup]="changePasswordForm" (submit)="onChangePassword()">
+            <div class="field">
+              <label class="field-label" [class.error]="password.touched && password.errors">New password *</label>
+              <input
+                type="password"
+                minlength="8"
+                formControlName="password"
+                placeholder="Enter your new password...">
+              <div
+                class="password-strength"
+                [password]="password.value"
+                mgdPasswordStrengthMeter></div>
+              <span class="error-message" *ngIf="password.touched && password.hasError('required')">Field is required</span>
+              <span class="error-message" *ngIf="password.touched && password.hasError('minlength')">Must be at least 8 characters</span>
+              <span class="error-message" *ngIf="password.touched && password.hasError('hasNumber')">Must contain at least 1 number</span>
+              <span class="error-message" *ngIf="password.touched && password.hasError('hasCapitalCase')">Must contain at least 1 capital letter</span>
+            </div>
+            <div class="field">
+              <label class="field-label" [class.error]="confirmPassword.touched && confirmPassword.errors">Confirm new password *</label>
+              <input
+                type="password"
+                formControlName="confirmPassword"
+                placeholder="...and again">
+              <span class="error-message" *ngIf="confirmPassword.touched && confirmPassword.hasError('required')">Field is required</span>
+              <span class="error-message" *ngIf="confirmPassword.dirty && changePasswordForm.hasError('mismatch')">Password mismatch</span>
+            </div>
+            <div class="send-button">
+              <button
+                *ngIf="!loading"
+                type="submit"
+                [disabled]="changePasswordForm.invalid || loading">Change password</button>
+              <mgd-spinner *ngIf="loading"></mgd-spinner>
+            </div>
+          </form>
+
+        </div>
+      </section>
+    </div>
+
+  </section>
+</main>

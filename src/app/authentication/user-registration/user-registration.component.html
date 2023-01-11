@@ -1,0 +1,50 @@
+<section>
+  <div class="container">
+    <img src="/assets/images/nm-logo.png" alt="Neumann Medical logo">
+    <p class="welcome-title"><span>MAGDA</span> welcomes you!</p>
+    <p class="instrucion-text">Please add your name and pick a password to use the system</p>
+    <form [formGroup]="userRegisterForm" (submit)="onSendUserRegistration()">
+      <div class="field">
+        <label class="field-label" [class.error]="fullName.touched && fullName.errors">Name *</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          placeholder="Dr. Mark Greene">
+        <span class="error-message" *ngIf="fullName.touched && fullName.hasError('required')">Field is required</span>
+      </div>
+      <div class="field">
+        <label class="field-label" [class.error]="password.touched && password.errors">Password *</label>
+        <input
+          type="password"
+          minlength="8"
+          formControlName="password"
+          placeholder="Enter your password...">
+        <div
+          class="password-strength"
+          [password]="password.value"
+          mgdPasswordStrengthMeter></div>
+        <span class="error-message" *ngIf="password.touched && password.hasError('required')">Field is required</span>
+        <span class="error-message" *ngIf="password.touched && password.hasError('minlength')">Must be at least 8 characters</span>
+        <span class="error-message" *ngIf="password.touched && password.hasError('hasNumber')">Must contain at least 1 number</span>
+        <span class="error-message" *ngIf="password.touched && password.hasError('hasCapitalCase')">Must contain at least 1 capital letter</span>
+      </div>
+      <div class="field">
+        <label class="field-label" [class.error]="confirmPassword.touched && confirmPassword.errors">Password *</label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="...and again">
+        <span class="error-message" *ngIf="confirmPassword.touched && confirmPassword.hasError('required')">Field is required</span>
+        <span class="error-message" *ngIf="confirmPassword.dirty && userRegisterForm.hasError('mismatch')">Password mismatch</span>
+      </div>
+      <div class="registration-button">
+        <button
+          type="submit"
+          [disabled]="userRegisterForm.invalid || loading">Registration</button>
+      </div>
+    </form>
+  </div>
+</section>
+<div class="footer">
+  <a href="https://neumannmedical.com/en/home" target="_blank">Neumann Medical &copy; 2021</a>
+</div>

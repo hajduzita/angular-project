@@ -1,0 +1,48 @@
+<section>
+  <!--<div class="error-messages">
+    <span *ngIf="email.touched && email.hasError('required') || password.touched && password.hasError('required')"
+         class="error-message">
+     <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>Invalid e-mail or password
+    </span>
+    <span *ngIf="isInactiveUser" class="error-message">
+      <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>User is inactive
+    </span>
+    <span *ngIf="isLoginError" class="warning-message"><fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon> Invalid user</span>
+  </div>-->
+  <div class="container">
+    <img src="/assets/images/nm-logo.png" alt="Neumann Medical logo">
+    <p class="sign-in-title">Login to <span>MAGDA</span></p>
+    <form [formGroup]="signInForm" (submit)="onSignIn()">
+      <div style="padding-bottom: 20px;" class="field">
+        <label>Email</label>
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+        <input type="email" formControlName="username">
+      </div>
+      <div class="field">
+        <div class="password">
+          <label>Password</label>
+          <span><a [routerLink]="['/password-reset']">Forgot password?</a></span>
+        </div>
+        <fa-icon [icon]="['fas', 'key']"></fa-icon>
+        <input type="password" formControlName="password">
+      </div>
+      <div>
+      </div>
+      <div class="login-button">
+        <button
+          type="submit"
+          [disabled]="signInForm.invalid || loading">Login</button>
+      </div>
+    </form>
+  </div>
+</section>
+<div class="footer">
+  <a href="https://neumannmedical.com/en/home" target="_blank">Neumann Medical &copy; 2021</a>
+</div>
+<!--<footer>
+<p>Neumann Medical</p>
+</footer>-->
+
+<!--<section>
+<div></div>
+</section>-->

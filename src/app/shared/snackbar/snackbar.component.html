@@ -1,0 +1,8 @@
+<ul *ngIf="snackbars.length">
+  <li *ngFor="let snackbar of snackbars">
+    <mgd-types
+      [snackbar]="snackbar"
+      (click)="onRemove(snackbar)"
+      (remove)="onRemove($event)"></mgd-types>
+  </li>
+</ul>
